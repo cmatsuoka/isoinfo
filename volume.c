@@ -35,6 +35,9 @@ int read_volume(unsigned char *b)
 	case 1:
 		read_primary(b);
 		break;
+	case 2:
+		read_supplementary(b);
+		break;
 	}
 
 	return 0;
