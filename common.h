@@ -17,6 +17,7 @@ void report(char *, char *, ...);
 void report_s(char *, char *, ...);
 void report_32(char *, unsigned char *);
 void report_16(char *, unsigned char *);
+void report_date(char *, unsigned char *);
 void report_offset(unsigned char *);
 
 #endif

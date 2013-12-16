@@ -27,7 +27,7 @@ int read_volume(unsigned char *b)
 	type = *b++;
 	printf("%s\n\n", get_type_name(type));
 	report("Volume Descriptor Type", "%X", type);
-	report("Standard Identifier", "%-5.5s", b); b += 5;
+	report_s("Standard Identifier", "%-5.5s", b); b += 5;
 	report("Volume Descriptor Version", "%X", *b++);
 
 	switch (type) {

@@ -35,6 +35,24 @@ void report_16(char *msg, unsigned char *b)
 	printf("%-28.28s: %02x %02x (%d)\n", msg, b[0], b[1], read16l(b));
 }
 
+void report_date(char *msg, unsigned char *b)
+{
+	char tz = b[16];
+	int h, m;
+
+	if (tz < 0) {
+		h = -(-tz / 4);
+		m = -tz % 4;
+	} else {
+		h = tz / 4;
+		m = tz % 4;
+	}
+
+	printf("%-28.28s: %4.4s/%2.2s/%2.2s %2.2s:%2.2s:%2.2s:%2.2s "
+				"UTC%+d:%02d\n", msg, b, b + 4, b + 6,
+				b + 8, b + 10, b + 12, b + 14, h, m * 15);
+}
+
 void report_offset(unsigned char *b)
 {
 	printf("\n-----------------------------\n");

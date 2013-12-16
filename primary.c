@@ -24,10 +24,10 @@ int read_primary(unsigned char *b)
 	report_s("Copyright File Identifier", "%-37.37s", b); b += 37;
 	report_s("Abstract File Identifier", "%-37.37s", b); b += 37;
 	report_s("Bibliographic File Identifier", "%-37.37s", b); b += 37;
-	report_s("Volume Creation Time", "%-17.17s", b); b += 17;
-	report_s("Volume Modification Time", "%-17.17s", b); b += 17;
-	report_s("Volume Expiration Time", "%-17.17s", b); b += 17;
-	report_s("Volume Effective Time", "%-17.17s", b); b += 17;
+	report_date("Volume Creation Time", b); b += 17;
+	report_date("Volume Modification Time", b); b += 17;
+	report_date("Volume Expiration Time", b); b += 17;
+	report_date("Volume Effective Time", b); b += 17;
 	report("File Structure Version", "%d", *b++);
 
 	return 0;
