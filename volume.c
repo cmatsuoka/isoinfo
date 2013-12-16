@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "common.h"
 
 static const char *descriptor_type[] = {
@@ -24,9 +25,10 @@ int read_volume(unsigned char *b)
 	int type;
 
 	type = *b++;
-	report("Volume Descriptor Type", "%d (%s)", type, get_type_name(type));
+	printf("%s\n\n", get_type_name(type));
+	report("Volume Descriptor Type", "%X", type);
 	report("Standard Identifier", "%-5.5s", b); b += 5;
-	report("Volume Descriptor Version", "%d", *b++);
+	report("Volume Descriptor Version", "%X", *b++);
 
 	switch (type) {
 	case 0:
