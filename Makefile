@@ -5,7 +5,7 @@ CFLAGS	= -Wall -g -O2 -DVERSION=\"$(VERSION)\"
 LD	= gcc
 LDFLAGS	=
 LIBS	=
-OBJS	= main.o iso.o descriptor.o util.o
+OBJS	= main.o iso.o volume.o util.o boot.o primary.o
 BIN	= isoinfo
 
 

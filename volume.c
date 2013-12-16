@@ -19,7 +19,7 @@ static const char *get_type_name(int t)
 	return descriptor_type[t];
 }
 
-int read_descriptor(unsigned char *b)
+int read_volume(unsigned char *b)
 {
 	int type;
 
@@ -30,6 +30,10 @@ int read_descriptor(unsigned char *b)
 
 	switch (type) {
 	case 0:
+		read_boot(b);
+		break;
+	case 1:
+		read_primary(b);
 		break;
 	}
 
