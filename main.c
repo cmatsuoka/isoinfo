@@ -41,10 +41,11 @@ static void get_options(int argc, char **argv)
 	}
 }
 
+unsigned char *buf;
+
 int main(int argc, char **argv)
 {
 	char *name;
-	unsigned char *buf;
 	struct stat st;
 	int fd;
 
@@ -54,29 +55,36 @@ int main(int argc, char **argv)
 	/* Check for input file */
 	if (argc <= optind) {
 		usage(argv[0]);
-		exit(EXIT_FAILURE);
+		goto err;
 	}
 	name = argv[optind];
 
-	if (fstat(fd, &st) < 0) {
-		perror(name);
-		exit(EXIT_FAILURE);
-	}
-
 	if ((fd = open(name, O_RDONLY)) < 0) {
-		perror(name);
-		exit(EXIT_FAILURE);
+		perror("open");
+		goto err;
 	}
 
-	buf = mmap(NULL, st.st_size, PROT_READ, MAP_PRIVATE, fd, 0);
+	if (fstat(fd, &st) < 0) {
+		perror("stat");
+		goto err2;
+	}
+
+
+	buf = mmap(NULL, st.st_size, PROT_READ, MAP_SHARED, fd, 0);
 	if (buf == MAP_FAILED) {
-		perror(name);
-		exit(EXIT_FAILURE);
+		perror("mmap");
+		goto err2;
 	}
 
 	read_iso(buf);
 
 	munmap(buf, st.st_size);
+	close(fd);
 
 	exit(EXIT_SUCCESS);
+
+    err2:
+	close(fd);
+    err:
+	exit(EXIT_FAILURE);
 }
