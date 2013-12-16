@@ -41,11 +41,10 @@ static void get_options(int argc, char **argv)
 	}
 }
 
-unsigned char *buf;
-
 int main(int argc, char **argv)
 {
 	char *name;
+	unsigned char *buf;
 	struct stat st;
 	int fd;
 

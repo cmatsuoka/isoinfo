@@ -38,7 +38,7 @@ void report_16(char *msg, unsigned char *b)
 void report_offset(unsigned char *b)
 {
 	printf("\n-----------------------------\n");
-	printf("OFFSET %#010lx", (b - buf));
+	printf("OFFSET %#010lx", (b - iso_image));
 	printf("\n-----------------------------\n");
 }
 
