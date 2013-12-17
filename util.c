@@ -26,13 +26,13 @@ void report_s(char *msg, char *fmt, ...)
 
 void report_32(char *msg, unsigned char *b)
 {
-	printf("%-28.28s: %02x %02x %02x %02x (%d)\n",
+	printf("%-28.28s: %02X %02X %02X %02X (%d)\n",
 			msg, b[0], b[1], b[2], b[3], read32l(b));
 }
 
 void report_16(char *msg, unsigned char *b)
 {
-	printf("%-28.28s: %02x %02x (%d)\n", msg, b[0], b[1], read16l(b));
+	printf("%-28.28s: %02X %02X (%d)\n", msg, b[0], b[1], read16l(b));
 }
 
 void report_date(char *msg, unsigned char *b)

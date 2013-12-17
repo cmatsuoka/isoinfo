@@ -2,19 +2,19 @@
 #include "common.h"
 
 static const char *descriptor_type[] = {
-	"Boot Record Descriptor",
-	"Primary Volume Descriptor",
-	"Supplementary Volume Descriptor",
-	"Volume Partition Descriptor",
-	"reserved"
+	"BOOT RECORD DESCRIPTOR",
+	"PRIMARY VOLUME DESCRIPTOR",
+	"SUPPLEMENTARY VOLUME DESCRIPTOR",
+	"VOLUME PARTITION DESCRIPTOR",
+	"RESERVED",
+	"VOLUME DESCRIPTOR SET TERMINATOR"
 };
 
 static const char *get_type_name(int t)
 {
 	if (t == 255)
-		return "Volume Descriptor Set Terminator";
-
-	if (t > 4)
+		t = 5;
+	else if (t > 4)
 		t = 4;
 
 	return descriptor_type[t];
